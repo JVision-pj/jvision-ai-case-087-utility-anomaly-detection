@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>水電異常偵測儀｜Jvision AI Interactive Demo</title>
   <meta name="description" content="自動偵測水電異常、尖峰與節能機會。" />
-  <link rel="stylesheet" href="./styles.css?v=layout-blueprint-grid-20260720-1087" />
+  <link rel="stylesheet" href="./styles.css?v=layout-blueprint-grid-20260720-stats-contrast-1087" />
 </head>
 <body class="layout-blueprint-grid" data-layout="blueprint-grid">
   <main class="shell">
@@ -33,6 +33,9 @@
           <article><small>待處理</small><strong id="openCount">--</strong></article>
           <article><small>高風險</small><strong id="riskCount">--</strong></article>
           <article><small>完成率</small><strong id="doneRate">--</strong></article>
+          <article><small>總案件</small><strong id="totalCount">--</strong></article>
+          <article><small>平均 AI 分數</small><strong id="avgScore">--</strong></article>
+          <article><small>急件</small><strong id="urgentCount">--</strong></article>
         </div>
         <div class="insight">
           <span>AI 建議</span>
@@ -43,6 +46,27 @@
 
     <section class="modules" id="modules" aria-label="功能架構">
       <article><span>01</span><h2>AI 摘要</h2><p>自動整理今日異常、待辦、風險與下一步建議。</p></article><article><span>02</span><h2>風險排序</h2><p>依期限、影響度與資料完整度排序最該先處理的項目。</p></article><article><span>03</span><h2>任務派發</h2><p>把 AI 建議轉成負責人、期限與可追蹤狀態。</p></article><article><span>04</span><h2>營運洞察</h2><p>將每日操作累積成趨勢、瓶頸與改善清單。</p></article>
+    </section>
+
+    <section class="panel analytics-panel" aria-label="AI 營運統計">
+      <div class="panel-title">
+        <span>AI 營運統計</span>
+        <b>Data Pulse</b>
+      </div>
+      <div class="analytics-grid">
+        <article class="analytics-card">
+          <span>風險分布</span>
+          <div class="risk-bars" id="riskBars"></div>
+        </article>
+        <article class="analytics-card">
+          <span>AI 成效估算</span>
+          <div class="impact-grid">
+            <article><small>預估節省工時</small><strong id="savedHours">--</strong></article>
+            <article><small>自動化覆蓋率</small><strong id="automationRate">--</strong></article>
+            <article><small>改善任務</small><strong id="improvementCount">--</strong></article>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="workspace" id="workspace">
@@ -87,6 +111,6 @@
   <script>
     window.DEMO_CONFIG = {"id":1087,"caseNo":"087","name":"水電異常偵測儀","category":"ESG、能源與永續","description":"自動偵測水電異常、尖峰與節能機會。","repoName":"jvision-ai-case-087-utility-anomaly-detection","profile":{"object":"改善任務","owner":"永續專員","stages":["待蒐集","盤查中","待改善","已提交"],"risks":["資料缺漏","排放升高","憑證不足","法規期限"],"fields":["場域","期限","風險","負責人"]},"records":[{"id":"1087-1","title":"改善任務 1","target":"水電異常偵測儀 · 場域 1","owner":"Leo","due":"D+4","risk":"憑證不足","stage":"待蒐集","score":51,"priority":"low","done":false},{"id":"1087-2","title":"改善任務 2","target":"水電異常偵測儀 · 場域 2","owner":"Yuna","due":"D+12","risk":"法規期限","stage":"盤查中","score":52,"priority":"low","done":false},{"id":"1087-3","title":"改善任務 3","target":"水電異常偵測儀 · 場域 3","owner":"Kevin","due":"D+10","risk":"資料缺漏","stage":"待改善","score":40,"priority":"low","done":false},{"id":"1087-4","title":"改善任務 4","target":"水電異常偵測儀 · 場域 4","owner":"永續專員","due":"D+5","risk":"排放升高","stage":"已提交","score":68,"priority":"medium","done":true},{"id":"1087-5","title":"改善任務 5","target":"水電異常偵測儀 · 場域 5","owner":"Aken","due":"D+4","risk":"憑證不足","stage":"待蒐集","score":95,"priority":"high","done":false},{"id":"1087-6","title":"改善任務 6","target":"水電異常偵測儀 · 場域 6","owner":"Mia","due":"D+1","risk":"法規期限","stage":"盤查中","score":70,"priority":"medium","done":false},{"id":"1087-7","title":"改善任務 7","target":"水電異常偵測儀 · 場域 7","owner":"Leo","due":"D+5","risk":"資料缺漏","stage":"待改善","score":77,"priority":"medium","done":false},{"id":"1087-8","title":"改善任務 8","target":"水電異常偵測儀 · 場域 8","owner":"Yuna","due":"D+4","risk":"排放升高","stage":"已提交","score":67,"priority":"medium","done":true}],"modules":[{"title":"AI 摘要","text":"自動整理今日異常、待辦、風險與下一步建議。"},{"title":"風險排序","text":"依期限、影響度與資料完整度排序最該先處理的項目。"},{"title":"任務派發","text":"把 AI 建議轉成負責人、期限與可追蹤狀態。"},{"title":"營運洞察","text":"將每日操作累積成趨勢、瓶頸與改善清單。"}]};
   </script>
-  <script src="./app.js?v=interactive-20260720"></script>
+  <script src="./app.js?v=stats-20260720"></script>
 </body>
 </html>
