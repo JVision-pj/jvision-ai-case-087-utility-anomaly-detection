@@ -3,60 +3,90 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>水電用量異常偵測系統｜Jvision AI Demo</title>
+  <title>水電用量異常偵測系統｜Jvision AI Interactive Demo</title>
   <meta name="description" content="自動偵測水電異常、尖峰與節能機會。" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=interactive-20260720" />
 </head>
 <body>
   <main class="shell">
-    <nav class="nav">
+    <nav class="nav" aria-label="Demo 資訊">
       <strong>JVision AI Case 087</strong>
       <span>ESG、能源與永續</span>
     </nav>
+
     <section class="hero">
       <div class="copy">
-        <p class="eyebrow">AI Empowerment Demo</p>
+        <p class="eyebrow">Interactive AI Empowerment Demo</p>
         <h1>水電用量異常偵測系統</h1>
         <p>自動偵測水電異常、尖峰與節能機會。</p>
         <div class="actions">
           <a href="#workspace">開始操作 Demo</a>
-          <a href="#modules">查看功能架構</a>
+          <button class="ghost-button" type="button" data-action="run-ai">產生 AI 建議</button>
         </div>
       </div>
-      <div class="dashboard-card">
+      <aside class="dashboard-card" aria-label="AI 即時工作台">
         <div class="card-head">
           <span>今日 AI 工作台</span>
           <b>LIVE</b>
         </div>
         <div class="metric-grid">
-          <article><small>待處理</small><strong>20</strong></article>
-          <article><small>高風險</small><strong>3</strong></article>
-          <article><small>完成率</small><strong>93%</strong></article>
+          <article><small>待處理</small><strong id="openCount">--</strong></article>
+          <article><small>高風險</small><strong id="riskCount">--</strong></article>
+          <article><small>完成率</small><strong id="doneRate">--</strong></article>
         </div>
         <div class="insight">
           <span>AI 建議</span>
-          <p>優先處理「高風險逾期」與「資料缺漏」項目，預計可縮短 23% 作業時間。</p>
+          <p id="aiInsight">正在整理資料...</p>
         </div>
-      </div>
+      </aside>
     </section>
-    <section class="modules" id="modules">
-      <article><span>01</span><h2>AI 摘要</h2><p>水電用量異常偵測系統 將AI 摘要嵌入每日流程，協助團隊快速判斷下一步。</p></article><article><span>02</span><h2>風險預警</h2><p>水電用量異常偵測系統 將風險預警嵌入每日流程，協助團隊快速判斷下一步。</p></article><article><span>03</span><h2>任務追蹤</h2><p>水電用量異常偵測系統 將任務追蹤嵌入每日流程，協助團隊快速判斷下一步。</p></article><article><span>04</span><h2>營運洞察</h2><p>水電用量異常偵測系統 將營運洞察嵌入每日流程，協助團隊快速判斷下一步。</p></article>
+
+    <section class="modules" id="modules" aria-label="功能架構">
+      <article><span>01</span><h2>AI 摘要</h2><p>自動整理今日異常、待辦、風險與下一步建議。</p></article><article><span>02</span><h2>風險排序</h2><p>依期限、影響度與資料完整度排序最該先處理的項目。</p></article><article><span>03</span><h2>任務派發</h2><p>把 AI 建議轉成負責人、期限與可追蹤狀態。</p></article><article><span>04</span><h2>營運洞察</h2><p>將每日操作累積成趨勢、瓶頸與改善清單。</p></article>
     </section>
+
     <section class="workspace" id="workspace">
-      <div class="panel wide">
-        <div class="panel-title"><span>流程看板</span><b>AI Sorted</b></div>
-        <div class="row"><strong>新案件</strong><span>9 筆</span><i style="width:78%"></i></div><div class="row"><strong>進行中</strong><span>10 筆</span><i style="width:79%"></i></div><div class="row"><strong>待審核</strong><span>11 筆</span><i style="width:80%"></i></div><div class="row"><strong>已完成</strong><span>12 筆</span><i style="width:81%"></i></div>
+      <section class="panel wide">
+        <div class="panel-title">
+          <span>流程看板</span>
+          <b>AI Sorted</b>
+        </div>
+        <div class="board" id="stageBoard"></div>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-title">
+          <span>新增改善任務</span>
+          <b>Local Save</b>
+        </div>
+        <form class="task-form" id="taskForm">
+          <label>項目名稱<input name="title" required placeholder="輸入要追蹤的工作項目" /></label>
+          <label>場域<input name="target" required placeholder="例如：北區門市 / A 產線 / 客戶 A" /></label>
+          <label>風險類型
+            <select name="risk">
+              <option value="資料缺漏">資料缺漏</option><option value="排放升高">排放升高</option><option value="憑證不足">憑證不足</option><option value="法規期限">法規期限</option>
+            </select>
+          </label>
+          <button type="submit">新增到工作台</button>
+        </form>
+        <div class="toolbox">
+          <button type="button" data-action="run-ai">重新分析</button>
+          <button type="button" data-action="reset">還原範例資料</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel detail-panel">
+      <div class="panel-title">
+        <span>AI 處理佇列</span>
+        <b id="queueLabel">0 items</b>
       </div>
-      <div class="panel">
-        <div class="panel-title"><span>案例介紹</span><b>087</b></div>
-        <p>自動偵測水電異常、尖峰與節能機會。</p>
-        <ul>
-          <li>自動彙整跨系統資料與工作狀態</li>
-          <li>以 AI 摘要產生主管可讀的日報</li>
-          <li>將異常轉成可追蹤的改善任務</li>
-        </ul>
-      </div>
+      <div class="task-list" id="taskList"></div>
     </section>
   </main>
+  <script>
+    window.DEMO_CONFIG = {"id":1087,"caseNo":"087","name":"水電用量異常偵測系統","category":"ESG、能源與永續","description":"自動偵測水電異常、尖峰與節能機會。","repoName":"jvision-ai-case-087-utility-anomaly-detection","profile":{"object":"改善任務","owner":"永續專員","stages":["待蒐集","盤查中","待改善","已提交"],"risks":["資料缺漏","排放升高","憑證不足","法規期限"],"fields":["場域","期限","風險","負責人"]},"records":[{"id":"1087-1","title":"改善任務 1","target":"水電用量異常偵測系統 · 場域 1","owner":"Leo","due":"D+4","risk":"憑證不足","stage":"待蒐集","score":51,"priority":"low","done":false},{"id":"1087-2","title":"改善任務 2","target":"水電用量異常偵測系統 · 場域 2","owner":"Yuna","due":"D+12","risk":"法規期限","stage":"盤查中","score":52,"priority":"low","done":false},{"id":"1087-3","title":"改善任務 3","target":"水電用量異常偵測系統 · 場域 3","owner":"Kevin","due":"D+10","risk":"資料缺漏","stage":"待改善","score":40,"priority":"low","done":false},{"id":"1087-4","title":"改善任務 4","target":"水電用量異常偵測系統 · 場域 4","owner":"永續專員","due":"D+5","risk":"排放升高","stage":"已提交","score":68,"priority":"medium","done":true},{"id":"1087-5","title":"改善任務 5","target":"水電用量異常偵測系統 · 場域 5","owner":"Aken","due":"D+4","risk":"憑證不足","stage":"待蒐集","score":95,"priority":"high","done":false},{"id":"1087-6","title":"改善任務 6","target":"水電用量異常偵測系統 · 場域 6","owner":"Mia","due":"D+1","risk":"法規期限","stage":"盤查中","score":70,"priority":"medium","done":false},{"id":"1087-7","title":"改善任務 7","target":"水電用量異常偵測系統 · 場域 7","owner":"Leo","due":"D+5","risk":"資料缺漏","stage":"待改善","score":77,"priority":"medium","done":false},{"id":"1087-8","title":"改善任務 8","target":"水電用量異常偵測系統 · 場域 8","owner":"Yuna","due":"D+4","risk":"排放升高","stage":"已提交","score":67,"priority":"medium","done":true}],"modules":[{"title":"AI 摘要","text":"自動整理今日異常、待辦、風險與下一步建議。"},{"title":"風險排序","text":"依期限、影響度與資料完整度排序最該先處理的項目。"},{"title":"任務派發","text":"把 AI 建議轉成負責人、期限與可追蹤狀態。"},{"title":"營運洞察","text":"將每日操作累積成趨勢、瓶頸與改善清單。"}]};
+  </script>
+  <script src="./app.js?v=interactive-20260720"></script>
 </body>
 </html>
